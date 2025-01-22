@@ -85,7 +85,7 @@ jobs:
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: selenium
-          folder-name: ${{ cloudbees.workspace }}/test_data/selenium/reports/selenium_ide_runner_jest_withfailure.json
+          folder-name: ${{ cloudbees.workspace }}/test_data/selenium/selenium_result.json
 
   Jmeter-Test:
     steps:        
