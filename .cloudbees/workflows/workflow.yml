@@ -1,124 +1,99 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 name: trigger-publish-test-results-action
 kind: workflow
-
 on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
 jobs:
   Junit-Test:
     steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-
       - name: Junit
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: junit
           folder-name: ${{ cloudbees.workspace }}/test_data/junit/report*.xml
-    
   TestNG-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: TestNG
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: testng
           folder-name: ${{ cloudbees.workspace }}/test_data/testng/report.xml
-  
   GO-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: GO-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: go
           folder-name: ${{ cloudbees.workspace }}/test_data/go/report2.xml
-        
   ProdPerfect-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-  
       - name: ProdPerfect-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: prodperfect
           folder-name: ${{ cloudbees.workspace }}/test_data/prod_perfect/*.json
-
   MStest-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: MStest-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: mstest
           folder-name: ${{ cloudbees.workspace }}/test_data/mstest/*.trx
-
-
   Tosca-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: Tosca-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: tosca
           folder-name: ${{ cloudbees.workspace }}/test_data/tosca/report.xml
-
-
   Selenium-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: Selenium-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: selenium
           folder-name: ${{ cloudbees.workspace }}/test_data/selenium/selenium_result.json
-
   Jmeter-Test:
-    steps:        
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: Jmeter-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: jmeter
           folder-name: ${{ cloudbees.workspace }}/test_data/jmeter/jxmltestreport.jtl
-          
-  Jest-Test:  
-    steps:        
+  Jest-Test:
+    steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-      
       - name: Jest-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: jest
           folder-name: ${{ cloudbees.workspace }}/test_data/jest/nextgen-ui/jest-results.json
-
-
   Playwright-Test:
     steps:
       - name: checkout-source-code
         uses: cloudbees-io/checkout@v1
-
       - name: PlayWright-Test
         uses: cloudbees-io/publish-test-results@v1
         with:
           test-type: playwright
           folder-name: ${{ cloudbees.workspace }}/test_data/playwright/results_failed.json
-
-        
